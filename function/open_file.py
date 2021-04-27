@@ -11,5 +11,21 @@ def OpenConfig(config_path):
                 try: 
                     dic[data[0].upper()] = float(data[1])
                 except:
-                    dic[data[0].upper()] = data[1]
+                    print("zła wartość w pliku config, dla {configname} ustawiono wartość domyślną".format(data))
     return dic    
+
+def OpenData(data_path):
+    file = open(data_path)
+    lines = file.readlines()
+    data_list = []
+    for line in lines:
+        data = line.strip().replace(" ", "")
+        try:
+            data = int(data)
+            data_list.append(data)
+        except:
+            try:
+                data = float(data)
+                data_list.append(data)
+            except:
+                print("zły format danych")
