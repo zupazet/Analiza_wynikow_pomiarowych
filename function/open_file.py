@@ -1,15 +1,15 @@
 def OpenConfig(config_path):
     file = open(config_path)
     lines = file.readlines()
-    dic = {}
+    dic_config = {}
     for line in lines:
         data = line.strip().replace(" ", "").split("=")
         if (len(data) == 2 and data[1]):
             try:
-                dic[data[0].upper()] = int(data[1])
+                dic_config[data[0].upper()] = int(data[1])
             except:
                 try: 
-                    dic[data[0].upper()] = float(data[1])
+                    dic_config[data[0].upper()] = float(data[1])
                 except:
                     print("zła wartość w pliku config, dla {configname} ustawiono wartość domyślną".format(data))
     return dic    
