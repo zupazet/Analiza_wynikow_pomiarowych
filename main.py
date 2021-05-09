@@ -47,7 +47,22 @@ if dic_config['UNCERTAINTY'] == 1:
             if  dic_config['UNCERTAINTYANALOG'] == 1:
                 uncertainty_type_b = UncertaintyTypeBAnalog(dic_config['GAUGECLASS'], dic_config['GAUGERANGE'])
             list_results.append(uncertainty_type_b)
+try:
+    uncertainty = TotalUncertainty(uncertainty_type_a, uncertainty_type_b)  
+    list_results.append(uncertainty)  
+except(NameError):
+    try:
+        uncertainty = TotalUncertainty(0, uncertainty_type_b) 
+        list_results.append(uncertainty) 
+    except(NameError):
+        uncertainty = TotalUncertainty(uncertainty_type_a, 0)
+        list_results.append(uncertainty) 
 
+if dic_config['COMPATIBILITYTEST'] == 1:
+    if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == True: print(test_result_positive)
+    if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == False: print(test_result_negative)
+    
+print(dic_config['COMPATIBILITYTEST'])
 print(list_results)
 
 

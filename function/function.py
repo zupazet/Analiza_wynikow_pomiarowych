@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt, fabs
 from function.constant import student_fisher
 
 def AverageValue(data_list):
@@ -20,7 +20,7 @@ def StandardDeviation(cfg_student_fisher, data_list, average_value):
     return standard_deviation 
 
 def TotalUncertainty(uncertainty_type_a, uncertainty_type_b):
-    total_uncertainty = sqrt(uncertainty_type_a^2 + uncertainty_type_b^2)
+    total_uncertainty = sqrt(uncertainty_type_a**2 + uncertainty_type_b**2)
 
     return total_uncertainty
 
@@ -33,3 +33,10 @@ def UncertaintyTypeBAnalog(gauge_class, range):
     uncertainty_type_b = (gauge_class*range)/sqrt(3)
 
     return uncertainty_type_b
+
+def CompatibilityTest(average_value, pchysical_table_value, check_multiplier, uncertainty):
+    substraction = fabs(average_value - pchysical_table_value)
+    if substraction <= uncertainty*check_multiplier:
+        return True
+    else:
+        return False
