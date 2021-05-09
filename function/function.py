@@ -1,15 +1,15 @@
 from math import sqrt
-from constant import studen_fisher
+from function.constant import student_fisher
 
-def AverageValue():
+def AverageValue(data_list):
     average_value = sum(data_list)/len(data_list)
 
     return average_value
 
-def StandardDeviation(student_fisher):
+def StandardDeviation(cfg_student_fisher, data_list, average_value):
     sum = 0
     for value in data_list:
-        sum = sum + (average_value - value)^2
+        sum = sum + (average_value - value)**2
     
     standard_deviation = sqrt(sum)/sqrt(len(data_list))
     if student_fisher == 0:

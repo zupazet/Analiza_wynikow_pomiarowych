@@ -1,3 +1,5 @@
+from function.constant import *
+
 def OpenConfig(config_path):
     file = open(config_path)
     lines = file.readlines()
@@ -11,7 +13,7 @@ def OpenConfig(config_path):
                 try: 
                     dic_config[data[0].upper()] = float(data[1])
                 except:
-                    print("zła wartość w pliku config, dla {configname} ustawiono wartość domyślną".format(data))
+                    print(cfg_value_error.format(data))
     return dic_config    
 
 def OpenData(data_path):
@@ -28,6 +30,6 @@ def OpenData(data_path):
                 data = float(data)
                 data_list.append(data)
             except:
-                print("zły format danych")
+                print(value_error)
     
     return data_list
