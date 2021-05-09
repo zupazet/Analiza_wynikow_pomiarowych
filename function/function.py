@@ -1,5 +1,5 @@
 from math import sqrt
-from function.constant import student_fisher
+from function.constant import student_fisher, uncertainty_b_argument_digital, cfg_not_enough_data, uncertainty_b_argument_analog
 
 def AverageValue(data_list):
     average_value = sum(data_list)/len(data_list)
@@ -20,16 +20,22 @@ def StandardDeviation(cfg_student_fisher, data_list, average_value):
     return standard_deviation 
 
 def TotalUncertainty(uncertainty_type_a, uncertainty_type_b):
-    total_uncertainty = sqrt(uncertainty_type_a^2 + uncertainty_type_b^2)
+    total_uncertainty = sqrt(uncertainty_type_a**2 + uncertainty_type_b**2)
 
     return total_uncertainty
 
 def UncertaintyTypeBDigital(value, resolution, gauge_class, coefficient):
-    uncertainty_type_b = (gauge_class*0.01*value + coefficient*resolution)/sqrt(3)
+    try:    
+        uncertainty_type_b = (gauge_class*0.01*value + coefficient*resolution)/sqrt(3)
 
-    return uncertainty_type_b
+        return uncertainty_type_b
+    except(NameError):
+        print(cfg_not_enough_data + "\n" + uncertainty_b_argument_digital)
 
 def UncertaintyTypeBAnalog(gauge_class, range):
-    uncertainty_type_b = (gauge_class*range)/sqrt(3)
+    try:
+        uncertainty_type_b = (gauge_class*range)/sqrt(3)
 
-    return uncertainty_type_b
+        return uncertainty_type_b
+    except(NameError):
+        print(cfg_not_enough_data + "\n" + uncertainty_b_argument_analog)
