@@ -1,20 +1,45 @@
 import sys
-    
-print(f"Liczba argumentów: {len(sys.argv)}")
+from function.open_file import *
+from function.constant import *
+from function.function import *
 
-for i, arg in enumerate(sys.argv):
-    print(f"argument {i:>6}: {arg}")
+try:   
+    print(f"Liczba argumentów: {len(sys.argv)}")
 
-    if arg == "-help":
-        print("Aby uruchumić wpisz w terminalu: 'python main.py -run <ścieżka do pliku config> <ściezka do pliku z danymi>'")
+    for i, arg in enumerate(sys.argv):
+        print(f"argument {i:>6}: {arg}")
 
-    if arg == "-run":
-        try:
-            config_path = sys.argv[i+1]
-        except(IndexError):
-            print('brak ściezki config')
+        if arg == "-help":
+            print(how_to_run_info)
+
+        if arg == "-run":
+            try:
+                config_path = sys.argv[i+1]
+            except(IndexError):
+                print(cfg_path_error)
         
-        try:
-            data_path = sys.argv[i+2]
-        except(IndexError):
-            print('brak ściezki danych')
+            try:
+                data_path = sys.argv[i+2]
+            except(IndexError):
+                print(data_path_error)
+                break
+
+    dic_config = OpenConfig(config_path)
+    data_list = OpenData(data_path)
+
+    if dic_config['AVERAGE'] == 1:
+        average_value = AverageValue()
+
+    if dic_config['UNCERTAINTY'] == 1:
+        if dic_config['UNCERTAINTYTYPEA'] == 1:
+            uncertainty_type_a = StandardDeviation(dic_config['STUDENTFISHER'])
+
+        if dic_config['UNCERTAINTYTYPEB'] == 1:
+            if  dic_config['UNCERTAINTYDIGITAL'] == 1:
+                uncertainty_type_b = UncertaintyTypeBDigital(average_value, dic_config['GAUGERESOLUTION'], dic_config['GAUGECLASS'], dic_config['GAUGECOEFFICIENTY'])
+            if  dic_config['UNCERTAINTYANALOG'] == 1:
+                uncertainty_type_b = UncertaintyTypeBAnalog(dic_config['GAUGECLASS'], dic_config['GAUGERANGE'])
+
+
+except(NameError):
+    print(how_to_run_info)

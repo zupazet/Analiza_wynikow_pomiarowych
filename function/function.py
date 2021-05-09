@@ -1,17 +1,21 @@
 from math import sqrt
+from constant import studen_fisher
 
 def AverageValue():
-    average_value = sum(data)/len(data)
+    average_value = sum(data_list)/len(data_list)
+
+    return average_value
 
 def StandardDeviation(student_fisher):
-    if student_fisher == 0:
-        sum = 0
-        for value in data:
-            sum = sum + (average_value - value)^2
+    sum = 0
+    for value in data_list:
+        sum = sum + (average_value - value)^2
     
-        standard_deviation = sqrt(sum)/sqrt(len(data))
-    if student_fisher == 1:
+    standard_deviation = sqrt(sum)/sqrt(len(data_list))
+    if student_fisher == 0:
         pass
+    if student_fisher == 1:
+        standard_deviation = standard_deviation * student_fisher[len(data_list) - 1]
     
     return standard_deviation 
 
@@ -20,12 +24,12 @@ def TotalUncertainty(uncertainty_type_a, uncertainty_type_b):
 
     return total_uncertainty
 
-def UncertaintyTypeBDigital(value, resolution, class, coefficient):
-    uncertainty_type_b = (class*0.01*value + coefficient*resolution)/sqrt(3)
+def UncertaintyTypeBDigital(value, resolution, gauge_class, coefficient):
+    uncertainty_type_b = (gauge_class*0.01*value + coefficient*resolution)/sqrt(3)
 
     return uncertainty_type_b
 
-def UncertaintyTypeBAnalog(class, range):
-    uncertainty_type_b = (class*range)/sqrt(3)
+def UncertaintyTypeBAnalog(gauge_class, range):
+    uncertainty_type_b = (gauge_class*range)/sqrt(3)
 
     return uncertainty_type_b
