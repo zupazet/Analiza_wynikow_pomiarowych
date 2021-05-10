@@ -52,17 +52,16 @@ try:
     list_results.append(uncertainty)  
 except(NameError):
     try:
-        uncertainty = TotalUncertainty(0, uncertainty_type_b) 
-        list_results.append(uncertainty) 
+        uncertainty = TotalUncertainty(0, uncertainty_type_b)  
     except(NameError):
         uncertainty = TotalUncertainty(uncertainty_type_a, 0)
-        list_results.append(uncertainty) 
+        
+    list_results.append(uncertainty) 
 
 if dic_config['COMPATIBILITYTEST'] == 1:
     if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == True: print(test_result_positive)
     if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == False: print(test_result_negative)
     
-print(dic_config['COMPATIBILITYTEST'])
 print(list_results)
 
 
