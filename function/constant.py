@@ -4,7 +4,7 @@ cfg_path_error = "Brak nazwy pliku config"
 data_path_error = "Brak nazwy pliku z danymi"
 how_to_run_info = "Aby uruchumić wpisz w terminalu: python main.py -run <nazwa pliku config> <nazwa pliku z danymi>"
 value_error = "Zły format danych"
-cfg_value_error = "Zła wartość w pliku config, dla {configname} ustawiono wartość domyślną"
+cfg_value_error = "Zła wartość w pliku config, dla {configname}"
 cfg_not_enough_data = "W pliku config podano za mało danych"
 uncertainty_b_argument_analog = """Do obliczenia niepewności typu b miernika analogowego uzupełnij plik config o poniższe wartości:
 Gauge Class, Gauge Range"""

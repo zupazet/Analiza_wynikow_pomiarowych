@@ -62,12 +62,14 @@ if dic_config['UNCERTAINTY'] == 1:
             list_results.append(uncertainty_type_b)
 
     try:
-        uncertainty = TotalUncertainty(uncertainty_type_a, uncertainty_type_b)    
+        uncertainty = TotalUncertainty(uncertainty_type_a, uncertainty_type_b) 
+        list_results.append(uncertainty)   
     except(NameError):
         try:
             uncertainty = TotalUncertainty(0, uncertainty_type_b) 
         except(NameError):
             uncertainty = TotalUncertainty(uncertainty_type_a, 0)
+        list_results.append(uncertainty)
 
 print(list_results)
 
