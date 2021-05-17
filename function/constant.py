@@ -7,4 +7,7 @@ value_error = "Zły format danych"
 cfg_value_error = "Zła wartość w pliku config, dla {configname}"
 test_result_positive = "Wyznaczona wartość jest zgodna z wartością tablicową"
 test_result_negative = "Wyznaczona wartość nie jest zgodna z wartością tablicową"
+compatibility_error_info = """Podano za mało danych w pliku konfiguracyjnym
+Do sprawdzenia zgodności uzupełnij plik konfiguracyjny o poniższe wartości:
+Check Multiplier, Physical Tabel Value"""
 
