@@ -31,6 +31,7 @@ def UncertaintyTypeBDigital(value, resolution, gauge_class, coefficient):
         return uncertainty_type_b
     except(NameError):
         print(cfg_not_enough_data + "\n" + uncertainty_b_argument_digital)
+        exit()
 
 def UncertaintyTypeBAnalog(gauge_class, range):
     try:
@@ -39,3 +40,4 @@ def UncertaintyTypeBAnalog(gauge_class, range):
         return uncertainty_type_b
     except(NameError):
         print(cfg_not_enough_data + "\n" + uncertainty_b_argument_analog)
+        exit()
