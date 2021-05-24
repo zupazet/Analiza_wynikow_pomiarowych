@@ -1,5 +1,5 @@
 from math import sqrt, fabs
-from function.constant import student_fisher, uncertainty_b_argument_digital, cfg_not_enough_data, uncertainty_b_argument_analog
+from function.constant import student_fisher, uncertainty_b_argument_digital, cfg_not_enough_data, uncertainty_b_argument_analog, percent
 
 
 def AverageValue(data_list):
@@ -27,7 +27,7 @@ def TotalUncertainty(uncertainty_type_a, uncertainty_type_b):
 
 def UncertaintyTypeBDigital(value, resolution, gauge_class, coefficient):
     try:    
-        uncertainty_type_b = (gauge_class*0.01*value + coefficient*resolution)/sqrt(3)
+        uncertainty_type_b = (gauge_class*percent*value + coefficient*resolution)/sqrt(3)
 
         return uncertainty_type_b
     except(NameError):

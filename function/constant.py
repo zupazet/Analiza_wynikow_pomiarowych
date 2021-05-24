@@ -1,4 +1,5 @@
 student_fisher = [0, 1.837, 1.321, 1.197, 1.141, 1.110, 1.090, 1.077, 1.066, 1.059, 1.052, 1.047, 1.043, 1.040, 1.037, 1.034, 1.032, 1.030, 1.028, 1.027]
+percent = 0.01
 
 cfg_path_error = "Brak nazwy pliku config"
 data_path_error = "Brak nazwy pliku z danymi"
@@ -15,4 +16,17 @@ test_result_negative = "Wyznaczona wartość nie jest zgodna z wartością tabli
 compatibility_error_info = """Podano za mało danych w pliku konfiguracyjnym
 Do sprawdzenia zgodności uzupełnij plik konfiguracyjny o poniższe wartości:
 Check Multiplier, Physical Tabel Value"""
-
+average = 'AVERAGE'
+uncertainty = 'UNCERTAINTY'
+uncertainty_type_a_dic = 'UNCERTAINTYTYPEA'
+uncertainty_type_b_dic = 'UNCERTAINTYTYPEB'
+student_fisher_dic = 'STUDENTFISHER'
+uncertainty_digital = 'UNRETAINTYDIGITAL'
+uncertainty_analog = 'UNCERTAINTYANALOG'
+gauge_resolution = 'GAUGERESOLUTION'
+gauge_class = 'GAUGECLASS'
+gauge_range = 'GAUGERANGE'
+gauge_coefficienty = 'GAUGECOEFFICIENTY'
+compatibility_test = 'COMPATIBILITYTEST'
+physical_tabel_value = 'PHYSICALTABELVALUE'
+check_multiplier = 'CHECKMULTIPLIER'
