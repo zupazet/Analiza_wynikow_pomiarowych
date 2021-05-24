@@ -10,4 +10,9 @@ uncertainty_b_argument_analog = """Do obliczenia niepewności typu b miernika an
 Gauge Class, Gauge Range"""
 uncertainty_b_argument_digital = """Do obliczenia niepewności typu b miernika cyfrowego uzupełnij plik config o poniższe wartości:
 Gauge Class, Gauge coefficienty, Gauge resolution"""
+test_result_positive = "Wyznaczona wartość jest zgodna z wartością tablicową"
+test_result_negative = "Wyznaczona wartość nie jest zgodna z wartością tablicową"
+compatibility_error_info = """Podano za mało danych w pliku konfiguracyjnym
+Do sprawdzenia zgodności uzupełnij plik konfiguracyjny o poniższe wartości:
+Check Multiplier, Physical Tabel Value"""
 

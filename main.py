@@ -86,6 +86,14 @@ if dic_config['UNCERTAINTY'] == 1:
             uncertainty = TotalUncertainty(uncertainty_type_a, 0)
         list_results.append(uncertainty)
 
+if dic_config['COMPATIBILITYTEST'] == 1:
+    try:
+        if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == True: print(test_result_positive)
+        if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == False: print(test_result_negative)
+    except(KeyError):
+        print(compatibility_error_info)
+        exit()
+    
 print(list_results)
 
 

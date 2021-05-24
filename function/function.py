@@ -1,5 +1,7 @@
 from math import sqrt
 from function.constant import student_fisher, uncertainty_b_argument_digital, cfg_not_enough_data, uncertainty_b_argument_analog
+from math import sqrt, fabs
+from function.constant import student_fisher
 
 def AverageValue(data_list):
     average_value = sum(data_list)/len(data_list)
@@ -41,3 +43,11 @@ def UncertaintyTypeBAnalog(gauge_class, range):
     except(NameError):
         print(cfg_not_enough_data + "\n" + uncertainty_b_argument_analog)
         exit()
+    return uncertainty_type_b
+
+def CompatibilityTest(average_value, pchysical_table_value, check_multiplier, uncertainty):
+    substraction = fabs(average_value - pchysical_table_value)
+    if substraction <= uncertainty*check_multiplier:
+        return True
+    else:
+        return False
