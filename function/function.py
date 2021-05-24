@@ -3,9 +3,7 @@ from function.constant import student_fisher, uncertainty_b_argument_digital, cf
 
 
 def AverageValue(data_list):
-    average_value = sum(data_list)/len(data_list)
-
-    return average_value
+    return sum(data_list)/len(data_list)
 
 def StandardDeviation(cfg_student_fisher, data_list, average_value):
     sum = 0

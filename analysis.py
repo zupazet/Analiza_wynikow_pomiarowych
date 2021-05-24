@@ -5,15 +5,10 @@ from function.main_function import *
 
 dic_config, data_list = RunFunction(sys.argv)
 list_results = []
+dic_results = {}
 
-try:
-    if dic_config[average] == 1:
-        average_value = AverageValue(data_list)
-        list_results.append(average_value)
-except(NameError):
-    pass    
-
-        
+dic_results['Average Value'] = MainAverageValue(data_list, dic_config)    
+     
 try:
     if dic_config[uncertainty] == 1:
         try:
