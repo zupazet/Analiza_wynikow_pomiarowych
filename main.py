@@ -11,24 +11,26 @@ try:
 
         if arg == "-help":
             print(how_to_run_info)
+            exit()
 
         if arg == "-run":
             try:
                 config_path = sys.argv[i+1]
             except(IndexError):
                 print(cfg_path_error)
+                exit()
         
             try:
                 data_path = sys.argv[i+2]
             except(IndexError):
                 print(data_path_error)
-                break
+                exit()
 
-    dic_config = OpenConfig(config_path)
-    data_list = OpenData(data_path)
+            dic_config = OpenConfig(config_path)
+            data_list = OpenData(data_path)
 
-    list_results = []
-    dic_results = {}
+            list_results = []
+            dic_results = {}
 except(NameError):
     print(how_to_run_info)
     exit()
@@ -99,6 +101,10 @@ try:
         except(KeyError):
             print(compatibility_error_info)
             exit()
+        except(NameError):
+            average_value = AverageValue(data_list)
+            if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == True: print(test_result_positive)
+            if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == False: print(test_result_negative)
 except(NameError):
     pass
     
