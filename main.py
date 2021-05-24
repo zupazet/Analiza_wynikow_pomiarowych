@@ -33,66 +33,74 @@ except(NameError):
     print(how_to_run_info)
     exit()
 
-if dic_config['AVERAGE'] == 1:
-    average_value = AverageValue(data_list)
-    list_results.append(average_value)
-        
-
-if dic_config['UNCERTAINTY'] == 1:
-    try:
-        if dic_config['UNCERTAINTYTYPEA'] == 1:
-            uncertainty_type_a = StandardDeviation(dic_config['STUDENTFISHER'], data_list, average_value)
-            list_results.append(uncertainty_type_a)
-
-        if dic_config['UNCERTAINTYTYPEB'] == 1:
-            try:
-                try:
-                    if  dic_config['UNCERTAINTYDIGITAL'] == 1:
-                        uncertainty_type_b = UncertaintyTypeBDigital(average_value, dic_config['GAUGERESOLUTION'], dic_config['GAUGECLASS'], dic_config['GAUGECOEFFICIENTY'])
-                except(KeyError):    
-                    if  dic_config['UNCERTAINTYANALOG'] == 1:
-                        uncertainty_type_b = UncertaintyTypeBAnalog(dic_config['GAUGECLASS'], dic_config['GAUGERANGE'])
-                list_results.append(uncertainty_type_b)
-            except(KeyError):
-                print(cfg_not_enough_data + "\n" + uncertainty_b_argument_digital + "\n" + uncertainty_b_argument_analog)
-                exit()
-
-    except(NameError):
+try:
+    if dic_config['AVERAGE'] == 1:
         average_value = AverageValue(data_list)
-        if dic_config['UNCERTAINTYTYPEA'] == 1:
-            uncertainty_type_a = StandardDeviation(dic_config['STUDENTFISHER'], data_list, average_value)
-            list_results.append(uncertainty_type_a)
+        list_results.append(average_value)
+except(NameError):
+    pass    
 
-        if dic_config['UNCERTAINTYTYPEB'] == 1:
-            try:
-                try:
-                    if  dic_config['UNCERTAINTYDIGITAL'] == 1:
-                        uncertainty_type_b = UncertaintyTypeBDigital(average_value, dic_config['GAUGERESOLUTION'], dic_config['GAUGECLASS'], dic_config['GAUGECOEFFICIENTY'])
-                except(KeyError):    
-                    if  dic_config['UNCERTAINTYANALOG'] == 1:
-                        uncertainty_type_b = UncertaintyTypeBAnalog(dic_config['GAUGECLASS'], dic_config['GAUGERANGE'])
-                list_results.append(uncertainty_type_b)
-            except(KeyError):
-                print(cfg_not_enough_data + "\n" + uncertainty_b_argument_digital + "\n" + uncertainty_b_argument_analog)
-                exit()
-
-    try:
-        uncertainty = TotalUncertainty(uncertainty_type_a, uncertainty_type_b) 
-        list_results.append(uncertainty)   
-    except(NameError):
+        
+try:
+    if dic_config['UNCERTAINTY'] == 1:
         try:
-            uncertainty = TotalUncertainty(0, uncertainty_type_b) 
-        except(NameError):
-            uncertainty = TotalUncertainty(uncertainty_type_a, 0)
-        list_results.append(uncertainty)
+            if dic_config['UNCERTAINTYTYPEA'] == 1:
+                uncertainty_type_a = StandardDeviation(dic_config['STUDENTFISHER'], data_list, average_value)
+                list_results.append(uncertainty_type_a)
 
-if dic_config['COMPATIBILITYTEST'] == 1:
-    try:
-        if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == True: print(test_result_positive)
-        if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == False: print(test_result_negative)
-    except(KeyError):
-        print(compatibility_error_info)
-        exit()
+            if dic_config['UNCERTAINTYTYPEB'] == 1:
+                try:
+                    try:
+                        if  dic_config['UNCERTAINTYDIGITAL'] == 1:
+                            uncertainty_type_b = UncertaintyTypeBDigital(average_value, dic_config['GAUGERESOLUTION'], dic_config['GAUGECLASS'], dic_config['GAUGECOEFFICIENTY'])
+                    except(KeyError):    
+                        if  dic_config['UNCERTAINTYANALOG'] == 1:
+                            uncertainty_type_b = UncertaintyTypeBAnalog(dic_config['GAUGECLASS'], dic_config['GAUGERANGE'])
+                    list_results.append(uncertainty_type_b)
+                except(KeyError):
+                    print(cfg_not_enough_data + "\n" + uncertainty_b_argument_digital + "\n" + uncertainty_b_argument_analog)
+                    exit()
+
+        except(NameError):
+            average_value = AverageValue(data_list)
+            if dic_config['UNCERTAINTYTYPEA'] == 1:
+                uncertainty_type_a = StandardDeviation(dic_config['STUDENTFISHER'], data_list, average_value)
+                list_results.append(uncertainty_type_a)
+
+            if dic_config['UNCERTAINTYTYPEB'] == 1:
+                try:
+                    try:
+                        if  dic_config['UNCERTAINTYDIGITAL'] == 1:
+                            uncertainty_type_b = UncertaintyTypeBDigital(average_value, dic_config['GAUGERESOLUTION'], dic_config['GAUGECLASS'], dic_config['GAUGECOEFFICIENTY'])
+                    except(KeyError):    
+                        if  dic_config['UNCERTAINTYANALOG'] == 1:
+                            uncertainty_type_b = UncertaintyTypeBAnalog(dic_config['GAUGECLASS'], dic_config['GAUGERANGE'])
+                    list_results.append(uncertainty_type_b)
+                except(KeyError):
+                    print(cfg_not_enough_data + "\n" + uncertainty_b_argument_digital + "\n" + uncertainty_b_argument_analog)
+                    exit()
+        try:
+            uncertainty = TotalUncertainty(uncertainty_type_a, uncertainty_type_b) 
+            list_results.append(uncertainty)   
+        except(NameError):
+            try:
+                uncertainty = TotalUncertainty(0, uncertainty_type_b) 
+            except(NameError):
+                uncertainty = TotalUncertainty(uncertainty_type_a, 0)
+            list_results.append(uncertainty)
+except(NameError):
+    pass    
+
+try:
+    if dic_config['COMPATIBILITYTEST'] == 1:
+        try:
+            if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == True: print(test_result_positive)
+            if CompatibilityTest(average_value, dic_config['PHYSICALTABELVALUE'], dic_config['CHECKMULTIPLIER'], uncertainty) == False: print(test_result_negative)
+        except(KeyError):
+            print(compatibility_error_info)
+            exit()
+except(NameError):
+    pass
     
 print(list_results)
 
