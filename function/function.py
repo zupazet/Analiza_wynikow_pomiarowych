@@ -23,24 +23,16 @@ def TotalUncertainty(uncertainty_type_a, uncertainty_type_b):
 
     return total_uncertainty
 
-def UncertaintyTypeBDigital(value, resolution, gauge_class, coefficient):
-    try:    
-        uncertainty_type_b = (gauge_class*percent*value + coefficient*resolution)/sqrt(3)
-
-        return uncertainty_type_b
-    except(NameError):
-        print(cfg_not_enough_data + "\n" + uncertainty_b_argument_digital)
-        exit()
-
-def UncertaintyTypeBAnalog(gauge_class, range):
-    try:
-        uncertainty_type_b = (gauge_class*range)/sqrt(3)
-
-        return uncertainty_type_b
-    except(NameError):
-        print(cfg_not_enough_data + "\n" + uncertainty_b_argument_analog)
-        exit()
+def UncertaintyTypeBDigital(value, resolution, gauge_class, coefficient):   
+    uncertainty_type_b = (gauge_class*percent*value + coefficient*resolution)/sqrt(3)
+    
     return uncertainty_type_b
+
+def UncertaintyTypeBAnalog(gauge_class, range):   
+    uncertainty_type_b = (gauge_class*range)/sqrt(3)
+    
+    return uncertainty_type_b
+    
 
 def CompatibilityTest(average_value, pchysical_table_value, check_multiplier, uncertainty):
     substraction = fabs(average_value - pchysical_table_value)
