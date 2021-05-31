@@ -82,7 +82,7 @@ def MainUncertaintyB(dic_config, data_list, dic_results):
 def MainTotalUncertainty(dic_config, dic_results):
     if uncertainty in dic_config:
         if dic_config[uncertainty] == 1:
-            return TotalUncertainty(dic_results[uncertainty_type_a_result], dic_results[uncertainty_type_a_result])
+            return TotalUncertainty(dic_results[uncertainty_type_a_result], dic_results[uncertainty_type_b_result])
         else:
             return 0
     else: return 0
