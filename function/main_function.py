@@ -99,6 +99,7 @@ def MainCompatiblityTest(dic_config, dic_results):
         if dic_config[compatibility_test] == 1 and (dic_results[average_result] == 0 or dic_results[uncertainty_result] == 0 or physical_tabel_value not in dic_config or check_multiplier not in dic_config):
             print(compatibility_error_info)
             exit()
+    else: return 0
 
 def Show(dic_results):
     items = dic_results.items()
