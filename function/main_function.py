@@ -29,7 +29,7 @@ def RunFunction(agrument):
 
                 return OpenConfig(config_path), OpenData(data_path)
     
-    except(NameError):
+    except(NameError, TypeError):
         print(how_to_run_info)
         exit()
 
