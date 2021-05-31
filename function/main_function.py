@@ -10,11 +10,11 @@ def RunFunction(agrument):
         for i, arg in enumerate(sys.argv):
             print(f"argument {i:>6}: {arg}")
 
-            if arg == "-help":
+            if arg == "-h" or arg == "--help":
                 print(how_to_run_info)
                 exit()
 
-            if arg == "-run":
+            if arg == "-r" or arg == "--run":
                 try:
                     config_path = sys.argv[i+1]
                 except(IndexError):
